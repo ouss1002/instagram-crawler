@@ -65,7 +65,7 @@ profiles = {
         // await console.log('1: 0');
         // await page.waitFor(10000);
         // await console.log('1: 10');
-        await screenThis(page);
+        // await screenThis(page);
         await page.evaluate(() => {
             let ele = document.querySelector('.aOOlW.HoLwm');
             if(ele != null) {
@@ -77,7 +77,7 @@ profiles = {
             // await console.log('2: 0');
             // await page.waitFor(10000);
             // await console.log('2: 10');
-            await screenThis(page);
+            // await screenThis(page);
             await page.evaluate(() => {
                 let ele = document.querySelector('.aOOlW.HoLwm');
                 if(ele != null) {
