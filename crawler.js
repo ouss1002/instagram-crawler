@@ -86,11 +86,11 @@ profiles = {
             });
         }
         catch(err){
-            console.err(err);
+            console.log(err);
         }
     }
     catch(err) {
-        console.err(err);
+        console.log(err);
     }
 
     result = await getters.crawlProfilesFromList(page, rules);
