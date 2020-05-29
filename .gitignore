@@ -1,0 +1,6 @@
+result/
+screens/
+tmp/
+node_modules/
+output.json
+output.js
