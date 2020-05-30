@@ -94,7 +94,10 @@ profiles = {
     }
 
     result = await getters.crawlProfilesFromList(page, rules);
-    console.log(result);
+
+    console.log();
+    console.log();
+    console.log("Finished crawling process... you can excelize the data through './utils/excelize.js'");
 
     // organizer.writeJSON(result, './output.json');
     // console.log('JSON full file has been saved.');
