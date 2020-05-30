@@ -293,7 +293,12 @@ async function getProfileLink(post_page) {
 
 async function getProfileId(profile_page) {
     let ret = await profile_page.evaluate(() => {
-        return document.querySelector('._7UhW9').innerText;
+        let d = document.querySelector('._7UhW9');
+        
+        if(d == null) {
+            return '';
+        }
+        return d.innerText;
     });
 
     return ret;
@@ -364,14 +369,15 @@ async function getPostsFromLinks(page, links, profile_id, profile_name, rules) {
         console.log('   crawling post: ', link);
         let post = await getPost(page, profile_id, profile_name);
         posts[link] = post;
-        console.log('   downloading media: ', link);
+        console.log('   downloading media');
         await organizer.downloadMediaFromPost(post, rules);
-        console.log('   finished crawling post: ', link);
+        console.log('   finished crawling');
         await page.waitFor(1000);
     }
-
-    organizer.writeJSON(posts, `./${rules.result}/${profile_id}/output.json`);
-    console.log('JSON profile file has been saved.');
+    if(Object.entries(posts).length > 0) {
+        organizer.writeJSON(posts, `./${rules.result}/${profile_id}/output.json`);
+        console.log('JSON profile file has been saved.');
+    }
 
     return posts;
 }
@@ -406,7 +412,7 @@ async function getLinksFromProfile(page, rules) {
 
 async function getLinksFromProfileRespectDates(page, dateDeb, dateEnd) {
     let ret = [];
-    let delay = 500;
+    let delay = 250;
     let repetitions = 20;
 
     let dateStartNumber = Date.parse(dateDeb);
@@ -414,11 +420,14 @@ async function getLinksFromProfileRespectDates(page, dateDeb, dateEnd) {
 
     let still = true;
     let whenToStop = 0;
-    let debug = 0;
 
     while(still && whenToStop < repetitions) {
         let leng = ret.length;
         let articles = await getCurrentArticles(page);
+
+        if(Object.entries(articles).length == 0) {
+            break;
+        }
 
         for(let arr of Object.entries(articles)) {
             if(arr[1] < dateStartNumber) {
@@ -439,7 +448,7 @@ async function getLinksFromProfileRespectDates(page, dateDeb, dateEnd) {
         }
 
         await scroll(page);
-        await page.waitFor(250);
+        await page.waitFor(delay);
     }
 
     return ret;
@@ -504,6 +513,10 @@ async function crawlProfile(page, link, rules) {
     }
 
     let profile_id = await getProfileId(page);
+    if(profile_id.length == 0) {
+        return {};
+    }
+    
     let profile_name = await getProfileName(page);
 
     let links = await getLinksFromProfile(page, rules);
@@ -527,8 +540,9 @@ async function crawlProfilesFromList(page, rules) {
         console.log('>crawling profile: ', link);
         let profile = await crawlProfile(page, link, rules);
         meta[link] = profile;
-        console.log('>finished crawling profile: ', link);
-        await page.waitFor(10000);
+        console.log('>finished crawling profile');
+        console.log();
+        await page.waitFor(5000);
     }
 
     return meta;

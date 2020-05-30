@@ -80,23 +80,20 @@ function excelize() {
 
     fs.readdirSync('./').forEach((dir) => {
 
-        if(!fs.lstatSync(dir).isDirectory()) {
-            continue;
+        if(fs.lstatSync(dir).isDirectory()) {
+            process.chdir(dir);
+            console.log('Processing directory: ', process.cwd());
+    
+            let jsonObj = getJSON('./output.json');
+    
+            let norm = normalizeJSON(jsonObj);
+    
+            makeExcelFromJSON(norm);
+    
+            process.chdir('../');
+            console.log('Finished writing excel file');
+            
         }
-
-        console.log('accessing directory: /', dir);
-
-        process.chdir(dir);
-        console.log('Changed directory: ', process.cwd());
-
-        let jsonObj = getJSON('./output.json');
-
-        let norm = normalizeJSON(jsonObj);
-
-        makeExcelFromJSON(norm);
-
-        process.chdir('../');
-        console.log('Changed directory: ', process.cwd());
     });
 
 }

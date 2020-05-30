@@ -17,7 +17,7 @@ async function downloadRetry(url, outputPath, n) {
             throw err;
         }
         await new Promise(r => setTimeout(r, 5000));
-        console.log("fail... retrying before exiting: ", n);
+        console.log("   fail... retrying before exiting: ", n);
         return await downloadRetry(url, outputPath, n - 1);
     }
 }
