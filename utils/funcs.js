@@ -29,7 +29,8 @@ function normalizeLinks(list) {
 
     let ret = [];
 
-    for(link of list) {
+    for(let link of list) {
+        link = link.trim();
         ret.push(link[link.length - 1] == '/' ? link.slice(0, link.length - 1) : link);
     }
 
