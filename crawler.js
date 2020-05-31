@@ -78,7 +78,7 @@ profiles = {
 
     console.log();
     console.log();
-    console.log("Finished crawling process... you can excelize the data through './utils/excelize.js'");
+    console.log("Finished crawling process... you can excelize the data through './excelize.js'");
 
 })();
 
