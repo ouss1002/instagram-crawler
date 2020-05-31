@@ -48,24 +48,9 @@ profiles = {
         await dialog.dismiss();
     });
 
-    // await page.goto(rules.loginPage);
-    // await page.waitFor('input[name="username"]');
-    // await page.waitFor('input[name="password"]');
-    
-    // await page.type('input[name="username"]', rules.username);
-    // await page.type('input[name="password"]', rules.password);
-
-    // await page.click('button[type="submit"]');
-
-    // await page.waitForNavigation();
-
     await page.goto('https://www.instagram.com/');
 
     try {
-        // await console.log('1: 0');
-        // await page.waitFor(10000);
-        // await console.log('1: 10');
-        // await screenThis(page);
         await page.evaluate(() => {
             let ele = document.querySelector('.aOOlW.HoLwm');
             if(ele != null) {
@@ -74,10 +59,6 @@ profiles = {
         });
 
         try{
-            // await console.log('2: 0');
-            // await page.waitFor(10000);
-            // await console.log('2: 10');
-            // await screenThis(page);
             await page.evaluate(() => {
                 let ele = document.querySelector('.aOOlW.HoLwm');
                 if(ele != null) {
@@ -98,9 +79,6 @@ profiles = {
     console.log();
     console.log();
     console.log("Finished crawling process... you can excelize the data through './utils/excelize.js'");
-
-    // organizer.writeJSON(result, './output.json');
-    // console.log('JSON full file has been saved.');
 
 })();
 

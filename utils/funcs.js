@@ -37,10 +37,24 @@ function normalizeLinks(list) {
     return ret;
 }
 
+function getDirectoryFromDate(date) {
+    let d = new Date(date);
+    if(d.toString() == 'Invalid Date') {
+        return '__NO_DATE__';
+    }
+
+    let arr = date.split('T');
+
+    let ret = arr[0] + '_' + arr[1].split('.')[0].split(':').join(';');
+
+    return ret;
+}
+
 
 module.exports = {
     timeFromDate,
     formatToNum,
     checkStringForNumber,
     normalizeLinks,
+    getDirectoryFromDate,
 }

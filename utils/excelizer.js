@@ -45,8 +45,8 @@ function normalizeJSON(jsonObj) {
         postObj['post'] = value['post'];
         postObj['hashtags'] = value['hashtags'];
         postObj['nbr_media'] = value['nbr_media'];
-        postObj['media'] = `=HYPERLINK("${value['post_id']}/1${media_ext}", "${nat}")`;
-        postObj['directory'] = `=HYPERLINK("${value['post_id']}", "${nat}")`;
+        postObj['media'] = `=HYPERLINK("${value['post_directory']}/1${media_ext}", "${nat}")`;
+        postObj['directory'] = `=HYPERLINK("${value['post_directory']}", "media_directory")`;
         postObj['nature'] = value['nature'];
         postObj['likes'] = value['likes'];
         postObj['views'] = value['views'];

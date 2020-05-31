@@ -320,6 +320,18 @@ async function getPostId(page) {
     return ret;
 }
 
+async function getDateTime(page) {
+    let ret = await page.evaluate(() => {
+        let d = document.querySelector('.c-Yi7 > time');
+        if(d == null) {
+            return '';
+        }
+        return d.dateTime;
+    });
+
+    return ret;
+}
+
 async function getPost(page, profile_id, profile_name) {
     let meta = {
         'profile_link': '',
@@ -338,6 +350,7 @@ async function getPost(page, profile_id, profile_name) {
         'comments': 0,
         'post_link': '',
         'post_id': '',
+        'post_directory': '',
     };
     
     meta.profile_link = await getProfileLink(page);
@@ -355,6 +368,7 @@ async function getPost(page, profile_id, profile_name) {
     meta.comments = await getComments(page);
     meta.post_link = await getURL(page);
     meta.post_id = await getPostId(page);
+    meta.post_directory = funcs.getDirectoryFromDate(await getDateTime(page));
     meta.nbr_media = Object.entries(meta.media).length;
 
     return meta;
@@ -370,7 +384,7 @@ async function getPostsFromLinks(page, links, profile_id, profile_name, rules) {
         let post = await getPost(page, profile_id, profile_name);
         posts[link] = post;
         console.log('   downloading media');
-        await organizer.downloadMediaFromPost(post, rules);
+        await organizer.downloadMediaFromPost2(post, rules);
         console.log('   finished crawling');
         await page.waitFor(1000);
     }
@@ -525,7 +539,7 @@ async function crawlProfile(page, link, rules) {
     origin = origin.split('/');
     origin = origin[origin.length - 1];
 
-    await organizer.writeProfileDirectory(origin, links, rules);
+    await organizer.writeProfileDirectory2(origin, links, rules);
 
     let ret = await getPostsFromLinks(page, links, profile_id, profile_name, rules);
 
