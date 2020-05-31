@@ -80,6 +80,10 @@ profiles = {
     console.log();
     console.log("Finished crawling process... you can excelize the data through './excelize.js'");
 
+    console.log('Exiting Chrome...');
+    await browser.close();
+    console.log('Exited successfully');
+
 })();
 
 screenThis =  async (page) => {
