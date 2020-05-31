@@ -46,7 +46,7 @@ function normalizeJSON(jsonObj) {
         postObj['hashtags'] = value['hashtags'];
         postObj['nbr_media'] = value['nbr_media'];
         postObj['media'] = `=HYPERLINK("${value['post_directory']}/1${media_ext}", "${nat}")`;
-        postObj['directory'] = `=HYPERLINK("${value['post_directory']}", "media_directory")`;
+        postObj['directory'] = `=HYPERLINK("${value['post_directory']}", "media_dir")`;
         postObj['nature'] = value['nature'];
         postObj['likes'] = value['likes'];
         postObj['views'] = value['views'];
@@ -75,7 +75,7 @@ function makeExcelFromJSON(json) {
 }
 
 function excelize() {
-    process.chdir('../');
+    // process.chdir('../');
     process.chdir('result/');
 
     fs.readdirSync('./').forEach((dir) => {
