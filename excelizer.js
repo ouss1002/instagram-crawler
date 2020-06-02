@@ -2,6 +2,11 @@ const fs = require('fs');
 const json2xls = require('json2xls');
 
 function getJSON(path) {
+
+    if (!fs.existsSync(path)) {
+        return {};
+    }
+
     let data = fs.readFileSync(path);
     
     if(data == null) {
@@ -85,14 +90,17 @@ function excelize() {
             console.log('Processing directory: ', process.cwd());
     
             let jsonObj = getJSON('./output.json');
-    
-            let norm = normalizeJSON(jsonObj);
-    
-            makeExcelFromJSON(norm);
+
+            if(Object.entries(jsonObj).length == 0) {
+                console.log('Nothing to excelize in directory: ', dir);
+            }
+            else {
+                let norm = normalizeJSON(jsonObj);
+                makeExcelFromJSON(norm);
+                console.log('Finished writing excel file');
+            }      
     
             process.chdir('../');
-            console.log('Finished writing excel file');
-            
         }
     });
 
