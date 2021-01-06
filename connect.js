@@ -3,7 +3,7 @@ const devices = require('puppeteer/DeviceDescriptors');
 const rules = require('./utils/rules');
 const fs = require('fs');
 
-screenshotCounter = 1;
+let screenshotCounter = 1;
 
 (async () => {
     const browser = await puppeteer.launch({
@@ -41,6 +41,7 @@ screenshotCounter = 1;
     await page.waitFor('input[name="password"]');
     
     await page.type('input[name="username"]', rules.username);
+    console.log("connecting with user: " + rules.username);
     await page.type('input[name="password"]', rules.password);
 
     await page.click('button[type="submit"]');
