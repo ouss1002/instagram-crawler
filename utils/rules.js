@@ -15,12 +15,12 @@ numberOfPosts = 0;
 // start crawling from this date
 // empty date ==> crawl the last [numberOfPosts] posts
 // format: 'YYYY-MM-DD'
-startDate = '2020-04-20';
+startDate = '2020-11-20';
 
 // end crawling on this date
 // empty date ==> crawl all posts from [startDate]
 // format: 'YYYY-MM-DD'
-endDate = '2020-05-20';
+endDate = '2020-12-20';
 
 // chrome executable needded to run puppeteer
 pathToChrome = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe';
