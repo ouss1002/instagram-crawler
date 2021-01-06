@@ -1,3 +1,8 @@
+/*
+    This file contains methods that help bypass the bot checking programs
+    in social media websites...
+*/
+
 // overwrite the `languages` property to use a custom getter
 Object.defineProperty(navigator, "languages", {
     get: function() {
