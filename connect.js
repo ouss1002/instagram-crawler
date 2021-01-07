@@ -1,3 +1,5 @@
+// Run this file if you filled in the username and passwords in the './utils/rules.js' file
+
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
 const rules = require('./utils/rules');

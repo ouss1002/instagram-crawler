@@ -1,3 +1,5 @@
+// Run this file if you want to connect manually
+
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
 const rules = require('./utils/rules');
