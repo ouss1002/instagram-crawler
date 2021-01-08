@@ -6,6 +6,6 @@
   - Pictures
   - Videos
   - Posts
-  - etc.
+  - etc.  
 Made using [puppeteer](https://github.com/puppeteer/puppeteer/).  
 
