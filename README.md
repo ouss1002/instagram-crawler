@@ -16,4 +16,5 @@ Made using [puppeteer](https://github.com/puppeteer/puppeteer/).
   - Fill in the file `./utils/rules.js` witht the appropriate information
   - Launch `node ./connect.js` to connect with your account
   - Launch `node ./crawler.js`
+  - The crawler may take some time downloading media
 
