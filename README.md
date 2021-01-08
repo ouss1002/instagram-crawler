@@ -25,4 +25,3 @@ To generate the excel file:
   - Run `node ./excelizer.js`
   - Open `./data.xlsx`
   - Enjoy analytics
-
