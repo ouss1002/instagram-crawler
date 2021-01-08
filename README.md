@@ -18,3 +18,6 @@ Made using [puppeteer](https://github.com/puppeteer/puppeteer/).
   - Launch `node ./crawler.js`
   - The crawler may take some time downloading media
 
+## After Crawling
+The result of the crawling will be saved to the folder `./results/`  
+Every profile has its own directory `./results/profile_id`
